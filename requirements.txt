@@ -2,6 +2,7 @@ torch
 torchvision
 pandas
 numpy
+protobuf
 mmcv-full
 ensemble_boxes
 kaggle
