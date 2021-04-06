@@ -1,0 +1,7 @@
+torch
+torchvision
+pandas
+numpy
+mmcv-full
+ensemble_boxes
+kaggle
