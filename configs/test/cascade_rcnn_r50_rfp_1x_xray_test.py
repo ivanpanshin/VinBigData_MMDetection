@@ -78,16 +78,7 @@ classes = ('Aortic_enlargement', 'Atelectasis', 'Calcification', 'Cardiomegaly',
            'Other_lesion', 'Pleural_effusion', 'Pleural_thickening', 'Pneumothorax', 'Pulmonary_fibrosis')
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='Resize', img_scale=(1024, 1024), keep_ratio=True),
-    dict(type='RandomFlip', flip_ratio=0.5),
-    dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size_divisor=32),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
-]
+
 test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
@@ -107,39 +98,9 @@ test_pipeline = [
 data = dict(
     samples_per_gpu=2,
     workers_per_gpu=12,
-    train=dict(
-        img_prefix='data',
-        classes=classes,
-        ann_file='data/folds/coco_train_fold_0.json',
-        pipeline = train_pipeline),
-    val=dict(
-        img_prefix='data',
-        classes=classes,
-        ann_file='data/folds/coco_valid_fold_0.json',
-        pipeline = test_pipeline),
     test=dict(
         img_prefix='data',
         classes=classes,
         ann_file='data/folds/coco_test.json',
         pipeline = test_pipeline))
-
-
-log_config = dict(  # config to register logger hook
-    interval=100,  # Interval to print the log
-    hooks=[
-        dict(type='TensorboardLoggerHook'), # The Tensorboard logger is also supported
-        dict(type='TextLoggerHook')
-    ])  # The logger used to record the training process.
-
-lr_config = dict(
-    policy='CosineAnnealing',
-    by_epoch=False,
-    warmup='linear',
-    warmup_iters=500,
-    warmup_ratio=0.001,
-    min_lr=0.0)
-total_epochs = 20
-
-load_from = 'checkpoints/cascade_rcnn_r50_rfp_1x_coco-8cf51bfd.pth'
-work_dir = '/media/ivan/Data1/mmdetection_experiments/cascade_rfp_r50_fold0'
 
