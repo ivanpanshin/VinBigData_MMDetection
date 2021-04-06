@@ -62,7 +62,7 @@ if __name__ == '__main__':
     for fold in range(5):
         preds = pd.read_pickle('pkl_preds/{}/test/fold{}.pkl'.format(model_name, fold))
         original_test = pd.read_csv('data/test.csv', sep=',')
-         with open('data/folds/coco_test.json', 'r') as file:
+        with open('data/folds/coco_test.json', 'r') as file:
             image_paths = [x['file_name'].split('/')[-1] for x in json.load(file)['images']]
 
         preds = np.array(preds)
