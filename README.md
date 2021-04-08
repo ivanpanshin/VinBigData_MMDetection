@@ -18,4 +18,19 @@ In order to get final predictions of cascade models for VinBigData Chest X-ray A
     ./inference_cascade.sh
     ```
 
-In the end, you'll end up with 2 submissions under `final_subs` directory. If you don't wish to run the inference yourself, you can simply download these submissions [here](https://www.kaggle.com/ivanpan/vinbigdata-subs). 
+    In the end, you'll end up with 2 submissions under `final_subs` directory. If you don't wish to run the inference yourself, you can simply download these submissions [here](https://www.kaggle.com/ivanpan/vinbigdata-subs). 
+
+In order to run the training from the beginning, run the following: 
+
+1. Download checkpoints + train annotations for training
+    ```
+    ./download_checkpoints.sh
+    ./download_train_data.sh
+    ```
+    
+2. Run 1 stage of training
+    ```
+    ./train_1stage.sh
+    ```
+
+3. Select the best weights for 5 folds, based on AP@0.4 (AP@0.5 should work as well), and place them into `cascade_r50_augs_with_empty/fold$i.pth` directory. 
