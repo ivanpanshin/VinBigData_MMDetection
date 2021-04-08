@@ -11,4 +11,4 @@ pip install -r requirements/optional.txt
 pip install future tensorboard
 pip install -v -e .
 cd ..
-cp schedule_1x.py mmdetection/configs/_base/schedules/
+cp schedule_1x.py mmdetection/configs/_base_/schedules/
