@@ -33,4 +33,4 @@ In order to run the training from the beginning, run the following:
     ./train_1stage.sh
     ```
 
-3. Select the best weights for 5 folds, based on AP@0.4 (AP@0.5 should work as well), and place them into `cascade_r50_augs_with_empty/fold$i.pth` directory. 
+3. Select the best weights for 5 folds, based on AP@0.4 (AP@0.5 should work as well), and place them into `weights/cascade_r50_augs_with_empty/fold$i.pth` directory. 
