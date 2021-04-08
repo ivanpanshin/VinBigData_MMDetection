@@ -1,3 +1,5 @@
+## Inference
+
 In order to get final predictions of cascade models for VinBigData Chest X-ray Abnormalities Detection competition on Kaggle, run the following:
 
 1. Install requirements
@@ -20,6 +22,9 @@ In order to get final predictions of cascade models for VinBigData Chest X-ray A
 
     In the end, you'll end up with 2 submissions under `final_subs` directory. If you don't wish to run the inference yourself, you can simply download these submissions [here](https://www.kaggle.com/ivanpan/vinbigdata-subs). 
 
+
+## Training
+
 In order to run the training from the beginning, run the following: 
 
 1. Download checkpoints + train annotations for training
@@ -34,3 +39,12 @@ In order to run the training from the beginning, run the following:
     ```
 
 3. Select the best weights for 5 folds, based on AP@0.4 (AP@0.5 should work as well), and place them into `weights/cascade_r50_augs_with_empty/fold$i.pth` directory. 
+
+4. Run 2 stage of training
+    ```
+    ./train_2stage.sh
+    ```
+
+5. Select the best weights for 5 folds, based on AP@0.4 (AP@0.5 should work as well), and place them into `weights/cascade_r50_augs_rare_with_empty/fold$i.pth` directory. 
+
+    In the end, you'll end up with weights that you can use for `./inference_cascade.sh`.
